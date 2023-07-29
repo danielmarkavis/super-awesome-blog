@@ -1,6 +1,9 @@
 <template>
   <HomeLayout title="Admin">
     <template #content>
+      <div class="p-5">
+        <NuxtLink to="/admin/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create</NuxtLink>
+      </div>
       <DataTable class="w-full" :records="records" entities="Articles" :total="records.length" :loading="loading">
         <template #header>
           <TableHeading class="text-left">title</TableHeading>
