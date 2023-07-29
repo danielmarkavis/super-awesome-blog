@@ -30,6 +30,7 @@ export default function () {
                 duration: 3000,
                 close: true,
             }).showToast();
+            navigateTo('/admin');
         }).catch((response) => {
             console.log(response);
             Toastify({
@@ -58,6 +59,7 @@ export default function () {
                 duration: 3000,
                 close: true,
             }).showToast();
+            navigateTo('/admin');
         }).catch((response) => {
             Toastify({
                 text: response.status,
