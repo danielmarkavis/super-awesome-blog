@@ -1,4 +1,5 @@
 import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 export default function () {
 
@@ -53,7 +54,7 @@ export default function () {
             return Promise.reject(response);
         }).then((json) => {
             Toastify({
-                text: "Article created",
+                text: "Article updated",
                 duration: 3000,
                 close: true,
             }).showToast();
@@ -69,6 +70,23 @@ export default function () {
     async function deleteArticle(id) {
         return await fetch('https://jsonplaceholder.typicode.com/posts/' + id, {
             method: 'DELETE',
+        }).then((response) => {
+            if (response?.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then((json) => {
+            Toastify({
+                text: "Article deleted",
+                duration: 3000,
+                close: true,
+            }).showToast();
+        }).catch((response) => {
+            Toastify({
+                text: response.status,
+                duration: 3000,
+                close: true,
+            }).showToast();
         })
     }
 

@@ -1,8 +1,9 @@
 <template>
   <HomeLayout title="Admin">
     <template #content>
-      <div class="p-5">
-        <NuxtLink to="/admin/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create</NuxtLink>
+      <div class="p-5 w-100 flex items-center">
+        <h2 class="text-lg font-bold">Articles</h2>
+        <NuxtLink to="/admin/create" class="ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create</NuxtLink>
       </div>
       <DataTable class="w-full" :records="records" entities="Articles" :total="records.length" :loading="loading">
         <template #header>
@@ -13,23 +14,12 @@
           <TableCell>{{ record?.title || '&mdash;' }}</TableCell>
           <TableCell class="flex gap-2 justify-end">
             <NuxtLink :to="'/admin/edit/'+record?.id" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</NuxtLink>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="deleteArticleById(record?.id)">Delete</button>
           </TableCell>
         </template>
       </DataTable>
     </template>
   </HomeLayout>
 
-  <button id="show-modal" @click="showModal = true">Show Modal</button>
-
-  <Teleport to="body">
-    <!-- use the modal component, pass in the prop -->
-    <modal :show="showModal" @close="showModal = false">
-      <template #header>
-        <h3>custom header</h3>
-      </template>
-    </modal>
-  </Teleport>
 </template>
 
 <script setup>
@@ -38,33 +28,14 @@ import TableHeading from '~/components/lists/partials/TableHeading.vue'
 import TableCell from '~/components/lists/partials/TableCell.vue'
 import ArticleRepository from '~/components/repositories/ArticlesRepository'
 import HomeLayout from '~/layouts/HomeLayout.vue'
-import Modal from '/components/Modal.vue'
 
 let records = ref([])
 let loading = ref(false)
-let showModal = ref(false)
 
-const { fetchArticles, deleteArticle } = ArticleRepository()
+const { fetchArticles } = ArticleRepository()
 
 fetchArticles().then((json) => {
   records.value = json;
 })
 
-// updateArticle({
-//       id: records.id,
-//       title: form.title,
-//       body: form.body,
-//       userId: 1,
-//     }).then((json) => {
-//   records.value = json;
-// })
-
-function deleteArticleById(id) {
-  deleteArticle(id);
-}
-
 </script>
-
-<style scoped>
-
-</style>

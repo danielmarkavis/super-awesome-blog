@@ -6,7 +6,7 @@ defineProps({
 
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask">
+    <div v-if="show" class="modal-mask" @click="$emit('close')">
       <div class="modal-container">
         <div class="modal-header">
           <slot name="header">default header</slot>
@@ -18,12 +18,6 @@ defineProps({
 
         <div class="modal-footer">
           <slot name="footer">
-            default footer
-            <button
-                class="modal-default-button"
-                @click="$emit('close')"
-            >OK
-            </button>
           </slot>
         </div>
       </div>
