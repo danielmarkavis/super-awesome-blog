@@ -6,7 +6,7 @@
 
         <div v-if="records?.length > 0 && !loading">
           <div class="container mx-auto">
-            <div class="grid grid-cols-2 gap-5">
+            <div class="grid md:grid-cols-2 gap-5">
               <NuxtLink :to="'/blog/'+ record.id" class="rounded overflow-hidden shadow-lg hover:bg-gray-100" v-for="(record, index) in records" :key="index">
               <div class="px-6 py-4">
                 <div class="font-bold text-xl mb-2">{{ record?.title }}</div>

@@ -1,7 +1,7 @@
 <template>
     <HomeLayout title="Home" description="Homepage">
       <template #content>
-        <div class="container mx-auto py-5">
+        <div class="container mx-auto py-5 md:max-w-lg">
           <h1 class="text-2xl font-bold mb-4">{{record?.title}}</h1>
           <p>{{record?.body}}</p>
         </div>
