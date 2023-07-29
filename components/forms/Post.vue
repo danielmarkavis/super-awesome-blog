@@ -32,12 +32,12 @@
           <span>{{ errors.articleBody }}</span>
         </div>
 
-        <div class="flex items-center gap-2">
-          <button class="text-white font-bold py-2 px-4 rounded" :class="{'bg-blue-200' : isDisabled, 'bg-blue-500 hover:bg-blue-700': !isDisabled}" :disabled="isDisabled" @click="onSubmit">
-            {{ editing ? 'Update' : 'Create' }}
-          </button>
+        <div class="flex items-center justify-end gap-2">
           <button v-if="editing" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="showModal = true">
             Delete
+          </button>
+          <button class="text-white font-bold py-2 px-4 rounded" :class="{'bg-blue-200' : isDisabled, 'bg-blue-500 hover:bg-blue-700': !isDisabled}" :disabled="isDisabled" @click="onSubmit">
+            {{ editing ? 'Update' : 'Create' }}
           </button>
         </div>
         <div v-if="message" class="my-4 p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
@@ -65,7 +65,7 @@
       </template>
       <template #footer>
         <div class="flex items-center justify-end gap-2">
-          <button class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="showModal = false">Close</button>
+          <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" @click="showModal = false">Close</button>
           <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="confirmDelete(id)">Delete</button>
         </div>
       </template>
