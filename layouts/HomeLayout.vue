@@ -8,7 +8,9 @@
     <div class="min-h-screen">
       <NavMenu />
       <slot name="header"/>
-      <slot name="content"/>
+      <div class="p-5">
+        <slot name="content"/>
+      </div>
     </div>
   </div>
 </template>
