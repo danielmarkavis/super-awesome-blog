@@ -28,7 +28,7 @@ export default function () {
             Toastify({
                 text: "Article created",
                 duration: 3000,
-                close: true,
+                style: { background: 'green' }
             }).showToast();
             navigateTo('/admin');
         }).catch((response) => {
@@ -36,7 +36,7 @@ export default function () {
             Toastify({
                 text: response.status,
                 duration: 3000,
-                close: true,
+                style: { background: 'red' }
             }).showToast();
         })
     }
@@ -57,14 +57,14 @@ export default function () {
             Toastify({
                 text: "Article updated",
                 duration: 3000,
-                close: true,
+                style: { background: 'green' }
             }).showToast();
             navigateTo('/admin');
         }).catch((response) => {
             Toastify({
                 text: response.status,
                 duration: 3000,
-                close: true,
+                style: { background: 'red' }
             }).showToast();
         })
     }
@@ -81,13 +81,13 @@ export default function () {
             Toastify({
                 text: "Article deleted",
                 duration: 3000,
-                close: true,
+                style: { background: 'green' }
             }).showToast();
         }).catch((response) => {
             Toastify({
                 text: response.status,
                 duration: 3000,
-                close: true,
+                style: { background: 'red' }
             }).showToast();
         })
     }
