@@ -4,7 +4,6 @@
       <Form
           @submit="onSubmit"
           class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          validate-on-mount
       >
         <h2 class="py-5 text-lg">{{ title }}</h2>
 
@@ -34,7 +33,6 @@
               rows="10"
               class="shadow block p-2.5 w-full text-sm rounded border border-gray-300"
               v-bind="form.body"
-              :validateOnChange="true"
           />
           <span>{{ errors.body }}</span>
         </div>
@@ -115,10 +113,6 @@ const isValid = useIsFormValid()
 const isDisabled = computed(() => {
   return !isDirty.value || !isValid.value || isLoading.value
 })
-
-function required(value) {
-  return value ? true : 'This field is required'
-}
 
 function onSubmit(values) {
   isLoading.value = true
