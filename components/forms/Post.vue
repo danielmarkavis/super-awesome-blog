@@ -1,51 +1,45 @@
 <template>
   <div class="w-full">
     <template v-if="(record && editing) || !editing">
-      <Form
-          @submit="onSubmit"
-          class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      >
-        <h2 class="py-5 text-lg">{{ title }}</h2>
-
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="articleTitle">
             Title
           </label>
           <Field
               as="input"
               type="text"
-              name="title"
-              id="title"
+              name="articleTitle"
+              id="articleTitle"
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              v-bind="form.title"
+              v-bind="articleTitle"
           />
-          <span>{{ errors.title }}</span>
+          <span>{{ errors.articleTitle }}</span>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="articleBody">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="articleTitle">
             Body
           </label>
           <Field
+              rows="10"
               as="textarea"
               name="articleBody"
               id="articleBody"
-              rows="10"
-              class="shadow block p-2.5 w-full text-sm rounded border border-gray-300"
-              v-bind="form.body"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              v-bind="articleBody"
           />
-          <span>{{ errors.body }}</span>
+          <span>{{ errors.articleBody }}</span>
         </div>
 
-        <button class="text-white font-bold py-2 px-4 rounded" :class="{'bg-blue-200' : isDisabled, 'bg-blue-500 hover:bg-blue-700': !isDisabled}" :disabled="isDisabled">
+        <button class="text-white font-bold py-2 px-4 rounded" :class="{'bg-blue-200' : isDisabled, 'bg-blue-500 hover:bg-blue-700': !isDisabled}" :disabled="isDisabled" @click="onSubmit">
           {{ editing ? 'Update' : 'Create' }}
         </button>
 
         <div v-if="message" class="my-4 p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
           <span class="font-medium">Info alert!</span> {{ message }}.
         </div>
-
-      </Form>
+      </div>
     </template>
     <template v-else>
       <div class="text-center p-5">
@@ -90,22 +84,20 @@ if (editing.value) {
 }
 
 import * as yup from 'yup'
-const { errors, defineInputBinds } = useForm({
+const { values, errors, defineInputBinds } = useForm({
       validationSchema: {
-        title: yup.string().max(100).required(),
-        body: yup.string().required(),
+        articleTitle: yup.string().max(100).required(),
+        articleBody: yup.string().required(),
       },
       initialValues: {
-        title: record.value?.title,
-        body: record.value?.body,
+        articleTitle: record.value?.title,
+        articleBody: record.value?.body,
       },
     },
 );
 
-let form = reactive({
-  title: defineInputBinds('title'),
-  body: defineInputBinds('body'),
-})
+const articleTitle = defineInputBinds('articleTitle');
+const articleBody = defineInputBinds('articleBody');
 
 const isDirty = useIsFormDirty()
 const isValid = useIsFormValid()
@@ -114,15 +106,17 @@ const isDisabled = computed(() => {
   return !isDirty.value || !isValid.value || isLoading.value
 })
 
-function onSubmit(values) {
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
+
+function onSubmit() {
   isLoading.value = true
   if (!editing.value) {
     createArticle({
       userId: 1,
       title: values.title,
       body: values.body,
-    }).then((json) => {
-      message = 'Article created'
+    }).finally(() => {
       isLoading.value = false
     })
   } else {
@@ -131,8 +125,7 @@ function onSubmit(values) {
       id: props.id,
       title: values.title,
       body: values.body,
-    }).then((json) => {
-      message = 'Article updated'
+    }).finally(() => {
       isLoading.value = false
     })
   }

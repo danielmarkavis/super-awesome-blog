@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@vee-validate/nuxt": "^4.10.8",
-    "@vee-validate/yup": "^4.10.8"
+    "@vee-validate/yup": "^4.10.8",
+    "toastify-js": "^1.12.0"
   }
 }

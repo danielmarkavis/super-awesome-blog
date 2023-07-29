@@ -1,11 +1,13 @@
+import Toastify from 'toastify-js'
+
 export default function () {
 
     async function fetchArticles() {
-        return await fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json());
+        return await fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json())
     }
 
     async function fetchArticle(id) {
-        return await fetch('https://jsonplaceholder.typicode.com/posts/' + id).then((response) => response.json());
+        return await fetch('https://jsonplaceholder.typicode.com/posts/' + id).then((response) => response.json())
     }
 
     async function createArticle(data) {
@@ -15,7 +17,26 @@ export default function () {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-        }).then((response) => response.json());
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then((json) => {
+            console.log('test');
+            Toastify({
+                text: "Article created",
+                duration: 3000,
+                close: true,
+            }).showToast();
+        }).catch((response) => {
+            console.log(response);
+            Toastify({
+                text: response.status,
+                duration: 3000,
+                close: true,
+            }).showToast();
+        })
     }
 
     async function updateArticle(data) {
@@ -25,7 +46,24 @@ export default function () {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-        }).then((response) => response.json());
+        }).then((response) => {
+            if (response?.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then((json) => {
+            Toastify({
+                text: "Article created",
+                duration: 3000,
+                close: true,
+            }).showToast();
+        }).catch((response) => {
+            Toastify({
+                text: response.status,
+                duration: 3000,
+                close: true,
+            }).showToast();
+        })
     }
 
     async function deleteArticle(id) {
@@ -39,6 +77,6 @@ export default function () {
         fetchArticle,
         createArticle,
         updateArticle,
-        deleteArticle
+        deleteArticle,
     }
 }
