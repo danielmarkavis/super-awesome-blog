@@ -13,10 +13,13 @@
       </div>
     </div>
   </div>
+
+  <Alert />
 </template>
 
 <script setup>
 import NavMenu from '~/components/NavMenu.vue'
+import Alert from '~/components/Alert.vue'
 
 defineProps({
   title: {
@@ -28,4 +31,5 @@ defineProps({
     default: null,
   },
 })
+
 </script>

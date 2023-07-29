@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="max-w-xl mx-auto">
     <template v-if="(record && editing) || !editing">
       <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
@@ -151,7 +151,6 @@ function onSubmit() {
 
 function confirmDelete(id) {
   deleteArticle(id).finally(() => {
-    navigateTo('/admin');
     isLoading.value = false
   })
 }

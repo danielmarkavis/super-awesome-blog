@@ -1,7 +1,26 @@
-import Toastify from 'toastify-js'
-import "toastify-js/src/toastify.css"
+import { notify } from 'notiwind'
 
 export default function () {
+
+    function success(message) {
+        navigateTo('/admin').then(() => {
+            notify({
+                group: "messages",
+                title: "Success",
+                type: 'success',
+                text: message
+            }, 3000);
+        });
+    }
+
+    function error(message) {
+        notify({
+            group: "messages",
+            title: "Error",
+            type: 'error',
+            text: message
+        }, 3000);
+    }
 
     async function fetchArticles() {
         return await fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json())
@@ -20,24 +39,13 @@ export default function () {
             },
         }).then((response) => {
             if (response.ok) {
-                return response.json();
+                return response.json()
             }
-            return Promise.reject(response);
+            return Promise.reject(response)
         }).then((json) => {
-            console.log('test');
-            Toastify({
-                text: "Article created",
-                duration: 3000,
-                style: { background: 'green' }
-            }).showToast();
-            navigateTo('/admin');
+            success("The article was created!");
         }).catch((response) => {
-            console.log(response);
-            Toastify({
-                text: response.status,
-                duration: 3000,
-                style: { background: 'red' }
-            }).showToast();
+            error("An error occurred " + response.status);
         })
     }
 
@@ -50,22 +58,13 @@ export default function () {
             },
         }).then((response) => {
             if (response?.ok) {
-                return response.json();
+                return response.json()
             }
-            return Promise.reject(response);
+            return Promise.reject(response)
         }).then((json) => {
-            Toastify({
-                text: "Article updated",
-                duration: 3000,
-                style: { background: 'green' }
-            }).showToast();
-            navigateTo('/admin');
+            success("The article was updated!");
         }).catch((response) => {
-            Toastify({
-                text: response.status,
-                duration: 3000,
-                style: { background: 'red' }
-            }).showToast();
+            error("An error occurred " + response.status);
         })
     }
 
@@ -74,21 +73,13 @@ export default function () {
             method: 'DELETE',
         }).then((response) => {
             if (response?.ok) {
-                return response.json();
+                return response.json()
             }
-            return Promise.reject(response);
+            return Promise.reject(response)
         }).then((json) => {
-            Toastify({
-                text: "Article deleted",
-                duration: 3000,
-                style: { background: 'green' }
-            }).showToast();
+            success("The article was deleted!");
         }).catch((response) => {
-            Toastify({
-                text: response.status,
-                duration: 3000,
-                style: { background: 'red' }
-            }).showToast();
+            error("An error occurred " + response.status);
         })
     }
 
