@@ -15,6 +15,7 @@
     "nuxt": "^3.6.5"
   },
   "dependencies": {
+    "@nuxtjs/color-mode": "^3.3.0",
     "@vee-validate/nuxt": "^4.10.8",
     "@vee-validate/yup": "^4.10.8",
     "notiwind": "^2.0.2"

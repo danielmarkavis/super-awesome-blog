@@ -4,7 +4,7 @@
     <Meta name="description" :content="description"/>
   </Head>
 
-  <div v-cloak id="docs-root">
+  <div class="bg-white dark:bg-black">
     <div class="min-h-screen">
       <NavMenu />
       <slot name="header"/>

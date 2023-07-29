@@ -1,13 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    [
-      '@vee-validate/nuxt',
-      {
-        autoImports: true,
-      },
+    devtools: {enabled: true},
+    modules: [
+        '@nuxtjs/tailwindcss',
+        [
+            '@nuxtjs/color-mode',
+            {
+                classSuffix: ''
+            }
+        ],
+        [
+            '@vee-validate/nuxt',
+            {
+                autoImports: true,
+            },
+        ],
     ],
-  ],
 })
