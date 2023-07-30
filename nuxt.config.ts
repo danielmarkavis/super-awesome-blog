@@ -6,7 +6,9 @@ export default defineNuxtConfig({
         [
             '@nuxtjs/color-mode',
             {
-                classSuffix: ''
+                classSuffix: '',
+                preference: 'system',
+                fallback: 'dark',
             }
         ],
         [
