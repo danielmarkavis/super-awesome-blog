@@ -30,6 +30,10 @@ export default function () {
         return await fetch('https://jsonplaceholder.typicode.com/posts/' + id).then((response) => response.json())
     }
 
+    async function fetchArticleComments(id) {
+        return await fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments').then((response) => response.json())
+    }
+
     async function createArticle(data) {
         return await fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -86,6 +90,7 @@ export default function () {
     return {
         fetchArticles,
         fetchArticle,
+        fetchArticleComments,
         createArticle,
         updateArticle,
         deleteArticle,

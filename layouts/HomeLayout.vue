@@ -4,7 +4,7 @@
     <Meta name="description" :content="description"/>
   </Head>
 
-  <div class="bg-white dark:bg-black">
+  <div class="bg-white dark:bg-gray-800">
     <div class="min-h-screen">
       <NavMenu />
       <slot name="header"/>

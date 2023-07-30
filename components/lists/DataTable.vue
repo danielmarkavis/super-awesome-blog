@@ -8,9 +8,9 @@
           </div>
         </div>
 
-        <table class="w-full bg-white rounded-lg shadow-sm border border-gray-300 overflow-x-auto">
+        <table class="w-full bg-white rounded-lg shadow-sm border border-gray-300 dark:border-gray-800 overflow-x-auto">
           <thead v-if="$slots.header">
-            <tr class="text-sm bg-gray-200 text-gray-700">
+            <tr class="text-sm text-gray-700 bg-gray-200 dark:text-gray-300 dark:bg-gray-900">
               <slot
                   name="header"
                   v-bind="{
@@ -23,7 +23,7 @@
           <tbody>
             <tr
                 v-for="(record, index) in records" :key="index"
-                class="border-t border-gray-300"
+                class="border-t border-gray-300 dark:border-gray-800 dark:text-gray-300 dark:bg-gray-700"
             >
               <slot v-bind="{ 'record': record, index }"/>
             </tr>
@@ -31,7 +31,7 @@
         </table>
       </div>
 
-      <p v-else class="text-gray-700 text-center p-8">
+      <p v-else class="text-gray-700 dark:text-gray-300 text-center p-8">
         {{ noResultsMessage || `No ${entities} found.` }}
       </p>
     </div>

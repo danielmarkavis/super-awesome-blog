@@ -7,12 +7,12 @@ defineProps({
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask" @click="$emit('close')">
-      <div class="modal-container">
-        <div class="modal-header">
+      <div class="modal-container dark:bg-gray-600">
+        <div class="modal-header dark:text-gray-300">
           <slot name="header">default header</slot>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body dark:text-gray-300">
           <slot name="body">default body</slot>
         </div>
 
