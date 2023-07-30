@@ -2,7 +2,7 @@
   <HomeLayout title="Admin">
     <template #content>
       <div class="p-5 w-100 flex items-center">
-        <h2 class="text-lg font-bold dark:text-gray-300">Articles</h2>
+        <h2 class="text-lg font-bold text-primary">Articles</h2>
         <NuxtLink to="/admin/create" class="ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create</NuxtLink>
       </div>
       <DataTable class="w-full" :records="records" entities="Articles" :total="records.length" :loading="loading">
@@ -19,7 +19,6 @@
       </DataTable>
     </template>
   </HomeLayout>
-
 </template>
 
 <script setup>
@@ -34,8 +33,12 @@ let loading = ref(false)
 
 const { fetchArticles } = ArticleRepository()
 
+loading.value = true;
 fetchArticles().then((json) => {
   records.value = json;
-})
+}).finally(()=> {
+  loading.value = false;
+});
+
 
 </script>

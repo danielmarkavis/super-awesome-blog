@@ -20,7 +20,7 @@ import { Notification, NotificationGroup } from 'notiwind'
             move-delay="delay-300"
         >
           <div
-              class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg"
+              class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-level-0 rounded-lg shadow-lg"
               v-for="notification in notifications"
               :key="notification.id"
           >
@@ -41,7 +41,7 @@ import { Notification, NotificationGroup } from 'notiwind'
             <div class="px-4 py-2 -mx-3">
               <div class="mx-3">
                 <span class="font-semibold text-green-500">{{ notification.title }}</span>
-                <p class="text-sm text-gray-600 dark:text-gray-300">{{ notification.text }}</p>
+                <p class="text-sm text-sub">{{ notification.text }}</p>
               </div>
             </div>
           </div>

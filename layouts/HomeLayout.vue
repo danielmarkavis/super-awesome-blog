@@ -4,7 +4,7 @@
     <Meta name="description" :content="description"/>
   </Head>
 
-  <div class="bg-white dark:bg-gray-800">
+  <div class="bg-level-0">
     <div class="min-h-screen">
       <NavMenu />
       <slot name="header"/>
@@ -20,6 +20,7 @@
 <script setup>
 import NavMenu from '~/components/NavMenu.vue'
 import Alert from '~/components/Alert.vue'
+import '@/css/default.css';
 
 defineProps({
   title: {

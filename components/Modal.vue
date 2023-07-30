@@ -6,17 +6,17 @@ defineProps({
 
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask" @click="$emit('close')">
-      <div class="modal-container dark:bg-gray-600">
-        <div class="modal-header dark:text-gray-300">
+    <div v-if="show" class="modal-mask fixed top-0 left-0" @click="$emit('close')">
+      <div class="modal-container m-auto bg-level-1 dark:bg-level-2 rounded-md shadow-md">
+        <div class="modal-header text-primary bg-level-2 dark:bg-level-1 p-5 rounded-t-md">
           <slot name="header">default header</slot>
         </div>
 
-        <div class="modal-body dark:text-gray-300">
+        <div class="modal-body text-sub p-5">
           <slot name="body">default body</slot>
         </div>
 
-        <div class="modal-footer">
+        <div class="modal-footer pb-5 pr-5">
           <slot name="footer">
           </slot>
         </div>
@@ -27,10 +27,6 @@ defineProps({
 
 <style>
 .modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -40,35 +36,12 @@ defineProps({
 
 .modal-container {
   width: 300px;
-  margin: auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
 }
 
 .modal-default-button {
   float: right;
 }
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
 .modal-enter-from {
   opacity: 0;

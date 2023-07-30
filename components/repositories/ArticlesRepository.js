@@ -46,7 +46,7 @@ export default function () {
                 return response.json()
             }
             return Promise.reject(response)
-        }).then((json) => {
+        }).then(() => {
             success("The article was created!");
         }).catch((response) => {
             error("An error occurred " + response.status);
@@ -65,7 +65,7 @@ export default function () {
                 return response.json()
             }
             return Promise.reject(response)
-        }).then((json) => {
+        }).then(() => {
             success("The article was updated!");
         }).catch((response) => {
             error("An error occurred " + response.status);
@@ -80,7 +80,7 @@ export default function () {
                 return response.json()
             }
             return Promise.reject(response)
-        }).then((json) => {
+        }).then(() => {
             success("The article was deleted!");
         }).catch((response) => {
             error("An error occurred " + response.status);

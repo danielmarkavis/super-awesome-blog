@@ -1,36 +1,34 @@
 <template>
-  <div>
-    <HomeLayout title="Home" description="Homepage">
-      <template #content>
-        <h1 class="text-center p-5 dark:text-white">Welcome to super awesome blog.</h1>
+  <HomeLayout title="Home" description="Homepage">
+    <template #content>
+      <h1 class="text-center p-5 text-accent">Welcome to super awesome blog.</h1>
 
-        <div v-if="records?.length > 0 && !loading">
-          <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-5">
-              <NuxtLink :to="'/blog/'+ record.id" class="rounded overflow-hidden shadow-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-700" v-for="(record, index) in records" :key="index">
+      <div v-if="records?.length > 0 && !loading">
+        <div class="container mx-auto">
+          <div class="grid md:grid-cols-2 gap-5">
+            <NuxtLink :to="'/blog/'+ record.id" class="rounded overflow-hidden shadow-lg bg-level-1 hover:bg-level-2" v-for="(record, index) in records" :key="index">
               <div class="px-6 py-4">
-                <div class="font-bold dark:text-white text-xl mb-2">{{ record?.title }}</div>
-                <p class="text-gray-700 dark:text-gray-400 text-base">
+                <div class="font-bold text-primary text-xl mb-2">{{ record?.title }}</div>
+                <p class="text-sub text-base">
                   {{ record?.body }}
                 </p>
               </div>
-              </NuxtLink>
-            </div>
+            </NuxtLink>
           </div>
         </div>
-      </template>
-    </HomeLayout>
-  </div>
+      </div>
+    </template>
+  </HomeLayout>
 </template>
 
 <script setup>
 import HomeLayout from '~/layouts/HomeLayout.vue'
 import ArticleRepository from '~/components/repositories/ArticlesRepository'
 
+const { fetchArticles } = ArticleRepository()
+
 let records = ref([])
 let loading = ref(false)
-
-const { fetchArticles } = ArticleRepository()
 
 loading.value = true
 fetchArticles().then((json) => {
@@ -38,7 +36,3 @@ fetchArticles().then((json) => {
   loading.value = false
 })
 </script>
-
-<style scoped>
-
-</style>
