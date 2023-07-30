@@ -12,7 +12,3 @@
   import Post from '~/components/forms/Post.vue'
   import HomeLayout from '~/layouts/HomeLayout.vue'
 </script>
-
-<style scoped>
-
-</style>

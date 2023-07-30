@@ -14,6 +14,3 @@
 
   const { id } = useRoute().params
 </script>
-
-<style scoped>
-</style>
