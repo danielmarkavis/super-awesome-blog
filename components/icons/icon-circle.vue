@@ -59,6 +59,6 @@
 
 <script>
 export default {
-  name: "icon-circle"
-};
+  name: 'icon-circle',
+}
 </script>

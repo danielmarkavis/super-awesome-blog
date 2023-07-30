@@ -10,8 +10,8 @@ export default {
   props: {
     colSpan: {
       type: [Number, String],
-      default: 1,
-    },
-  },
+      default: 1
+    }
+  }
 };
 </script>

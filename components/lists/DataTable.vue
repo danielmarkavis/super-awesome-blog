@@ -10,23 +10,23 @@
 
         <table class="w-full bg-white rounded-lg shadow-sm border border-gray-300 dark:border-gray-800 overflow-x-auto">
           <thead v-if="$slots.header">
-            <tr class="text-sm text-gray-700 bg-gray-200 dark:text-gray-300 dark:bg-gray-900">
-              <slot
-                  name="header"
-                  v-bind="{
+          <tr class="text-sm text-gray-700 bg-gray-200 dark:text-gray-300 dark:bg-gray-900">
+            <slot
+              name="header"
+              v-bind="{
                     loading,
                   }"
-              />
-            </tr>
+            />
+          </tr>
           </thead>
 
           <tbody>
-            <tr
-                v-for="(record, index) in records" :key="index"
-                class="border-t border-gray-300 dark:border-gray-800 dark:text-gray-300 dark:bg-gray-700"
-            >
-              <slot v-bind="{ 'record': record, index }"/>
-            </tr>
+          <tr
+            v-for="(record, index) in records" :key="index"
+            class="border-t border-gray-300 dark:border-gray-800 dark:text-gray-300 dark:bg-gray-700"
+          >
+            <slot v-bind="{ 'record': record, index }"/>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -60,5 +60,5 @@ defineProps({
   },
 })
 
-let loading = ref(false);
+let loading = ref(false)
 </script>

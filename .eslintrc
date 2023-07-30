@@ -1,0 +1,13 @@
+{
+  "ignorePatterns": [
+    "**/dist/**/*",
+    "**/node_modules/**/*",
+    "**/vendor/**/*"
+  ],
+  "root": true,
+  "extends": [
+    "@nuxtjs/eslint-config",
+    "eslint:recommended"
+    //    "plugin:vue/vue3-recommended",
+  ]
+}
