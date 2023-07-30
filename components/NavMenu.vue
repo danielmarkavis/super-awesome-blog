@@ -65,7 +65,7 @@ const showMenu = ref(false)
 const colorMode = useColorMode()
 const useDark = ref(false)
 
-nextTick(() => {
+nextTick(() => { // This is a way to set the switcher to whatever the system preference is.
   useDark.value = colorMode.value === 'dark'
 })
 

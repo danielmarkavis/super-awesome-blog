@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{title}}</Title>
+    <Title>{{title}} | Super Awesome Blog</Title>
     <Meta name="description" :content="description"/>
   </Head>
 
