@@ -25,7 +25,7 @@ The module @nuxtjs/tailwindcss provides the framework.
 
 I have **not** included an PostCSS/SCSS file, as that i dont believe would be required for this.
 
-I did finally create CSS variables as 
+I did finally create CSS variables for the theme.
 
 ### @nuxtjs/color-mode
 
@@ -39,7 +39,7 @@ Changing the toggle switcher to the correct theme on page load was an issue, mai
 
 This was the worst thing to get setup.
 
-Seems there are issues with different version of NuxtJS, The `Form` component was causing the validation only on existing an input, rather than on change.
+Seems there are issues with different version of NuxtJS, The `Form` component was causing the validation only on exiting an input, rather than on change.
 
 
 ### notiwind
