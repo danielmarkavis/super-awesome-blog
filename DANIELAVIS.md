@@ -26,7 +26,7 @@ This part of the project was a breeze, and really enjoyed using it.
 
 The module @nuxtjs/tailwindcss provides the framework.
 
-I have **not** included an PostCSS/SCSS file, as that i dont believe would be required for this.
+I have **not** included an PostCSS/SCSS file, as that i don't believe would be required for this.
 
 I did finally create CSS variables for the theme.
 
@@ -47,3 +47,11 @@ Seems there are issues with different version of NuxtJS, The `Form` component wa
 ### notiwind
 
 Notification library for tailwind.
+
+### EsLint
+
+Linting for uniform code formatting
+
+### Typescript 
+
+Added basic typescript types.
