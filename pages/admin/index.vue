@@ -19,11 +19,13 @@
           :loading="loading"
         >
           <template #header>
-            <TableHeading class="text-left"> title </TableHeading>
+            <TableHeading class="text-left">Title</TableHeading>
             <TableHeading />
           </template>
           <template #default="{ record }">
-            <TableCell>{{ record?.title || "&mdash;" }}</TableCell>
+            <TableCell>
+              {{ record?.title || "&mdash;" }}
+            </TableCell>
             <TableCell class="flex gap-2 justify-end">
               <NuxtLink
                 :to="'/admin/edit/' + record?.id"
