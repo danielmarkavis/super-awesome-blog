@@ -1,24 +1,33 @@
 <script setup lang="ts">
 defineProps<{
-  show: boolean,
-}>()
+  show: boolean;
+}>();
+
+defineEmits(["close"]);
 </script>
 
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask fixed top-0 left-0" @click="$emit('close')">
-      <div class="modal-container m-auto bg-level-1 dark:bg-level-2 rounded-md shadow-md">
-        <div class="modal-header text-primary bg-level-2 dark:bg-level-1 p-5 rounded-t-md">
-          <slot name="header">default header</slot>
+    <div
+      v-if="show"
+      class="modal-mask fixed top-0 left-0"
+      @click="$emit('close')"
+    >
+      <div
+        class="modal-container m-auto bg-level-1 dark:bg-level-2 rounded-md shadow-md"
+      >
+        <div
+          class="modal-header text-primary bg-level-2 dark:bg-level-1 p-5 rounded-t-md"
+        >
+          <slot name="header"> default header </slot>
         </div>
 
         <div class="modal-body text-sub p-5">
-          <slot name="body">default body</slot>
+          <slot name="body"> default body </slot>
         </div>
 
         <div class="modal-footer pb-5 pr-5">
-          <slot name="footer">
-          </slot>
+          <slot name="footer" />
         </div>
       </div>
     </div>

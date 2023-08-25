@@ -5,9 +5,12 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-  colSpan?: string,
-}>(), {
-  colSpan: "1"
-})
+withDefaults(
+  defineProps<{
+    colSpan?: string;
+  }>(),
+  {
+    colSpan: "1",
+  },
+);
 </script>
