@@ -1,7 +1,7 @@
-<script setup>
-defineProps({
-  show: Boolean,
-})
+<script setup lang="ts">
+defineProps<{
+  show: boolean,
+}>()
 </script>
 
 <template>
@@ -37,18 +37,6 @@ defineProps({
 .modal-container {
   width: 300px;
   transition: all 0.3s ease;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-leave-to {
-  opacity: 0;
 }
 
 .modal-enter-from .modal-container,

@@ -4,14 +4,10 @@
   </td>
 </template>
 
-<script>
-export default {
-  name: "TableCell",
-  props: {
-    colSpan: {
-      type: [Number, String],
-      default: 1,
-    },
-  },
-};
+<script setup lang="ts">
+withDefaults(defineProps<{
+  colSpan?: string,
+}>(), {
+  colSpan: "1"
+})
 </script>

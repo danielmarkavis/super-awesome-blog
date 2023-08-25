@@ -25,36 +25,28 @@
       <div v-else class="text-center p-8">
         <div class="flex justify-center">
           <icon-circle v-if="loading" class="w-10 h-10 text-green-500"/>
-          <p v-if="!loading && records?.length === 0" class="text-primary">{{ noResultsMessage || `No ${entities} found.` }}</p>
+          <p v-if="!loading && records?.length === 0" class="text-primary">{{ noResultsMessagesError }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import iconCircle from '~/components/icons/icon-circle.vue'
 
-defineProps({
-  records: {
-    type: Array,
-    required: true,
-  },
-  total: {
-    type: Number,
-    required: true,
-  },
-  entities: {
-    type: String,
-    required: true,
-  },
-  noResultsMessage: {
-    type: String,
-    default: null,
-  },
-  loading: {
-    type: Boolean,
-    required: true,
-  },
+const props = withDefaults(defineProps<{
+  records: Array<object>,
+  total: number,
+  entity: string,
+  noResultsMessages?: string,
+  loading: boolean
+}>(), {
+  noResultsMessages: `No :entities found.`
 })
+
+const noResultsMessagesError = computed(() => {
+  return props.noResultsMessages.replace(':entities', props.entity);
+})
+
 </script>

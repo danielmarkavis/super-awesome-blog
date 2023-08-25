@@ -1,7 +1,7 @@
 <template>
   <Head>
     <Title>{{title}} | Super Awesome Blog</Title>
-    <Meta name="description" :content="description"/>
+    <Meta name="description" :content="description??''"/>
   </Head>
 
   <div class="bg-level-0">
@@ -17,20 +17,13 @@
   <Alert />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import NavMenu from '~/components/NavMenu.vue'
 import Alert from '~/components/Alert.vue'
 import '@/css/default.css';
 
-defineProps({
-  title: {
-    type: String,
-    default: null,
-  },
-  description: {
-    type: String,
-    default: null,
-  },
-})
-
+defineProps<{
+  title: string,
+  description?: string,
+}>()
 </script>

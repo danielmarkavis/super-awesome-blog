@@ -12,7 +12,8 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^18.17.0",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.6.5",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.3.0",

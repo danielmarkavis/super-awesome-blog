@@ -1,8 +1,13 @@
 import { notify } from 'notiwind'
+import {Post} from "~/types/Post"
+import {Comment} from "~/types/Comment"
+
+const url = 'https://jsonplaceholder.typicode.com/posts/';
 
 export default function () {
 
-    function success(message) {
+    function success(message:string) {
+        // @ts-ignore
         navigateTo('/admin').then(() => {
             notify({
                 group: "messages",
@@ -13,7 +18,7 @@ export default function () {
         });
     }
 
-    function error(message) {
+    function error(message:string) {
         notify({
             group: "messages",
             title: "Error",
@@ -23,19 +28,19 @@ export default function () {
     }
 
     async function fetchArticles() {
-        return await fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json())
+        return await fetch(url).then((response) => response.json())
     }
 
-    async function fetchArticle(id) {
-        return await fetch('https://jsonplaceholder.typicode.com/posts/' + id).then((response) => response.json())
+    async function fetchArticle(id:string) {
+        return await fetch(url + id).then((response) => response.json())
     }
 
-    async function fetchArticleComments(id) {
-        return await fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments').then((response) => response.json())
+    async function fetchArticleComments(id:string) {
+        return await fetch(url + id + '/comments').then((response) => response.json())
     }
 
-    async function createArticle(data) {
-        return await fetch('https://jsonplaceholder.typicode.com/posts', {
+    async function createArticle(data:Post) {
+        return await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -53,8 +58,8 @@ export default function () {
         })
     }
 
-    async function updateArticle(data) {
-        return await fetch('https://jsonplaceholder.typicode.com/posts/' + data.id, {
+    async function updateArticle(data:Post) {
+        return await fetch(url + data.id, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
@@ -72,7 +77,7 @@ export default function () {
         })
     }
 
-    async function deleteArticle(id) {
+    async function deleteArticle(id:string) {
         return await fetch('https://jsonplaceholder.typicode.com/posts/' + id, {
             method: 'DELETE',
         }).then((response) => {

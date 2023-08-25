@@ -42,10 +42,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Switcher from '~/components/Switcher.vue'
 
-let navItems = ref([
+let navItems = ref<object>([
   {
     label: 'Admin',
     route: '/admin',

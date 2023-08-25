@@ -70,41 +70,36 @@
   </Teleport>
 </template>
 
-<script setup>
-import ArticleRepository from '~/components/repositories/ArticlesRepository'
+<script setup lang="ts">
+import ArticleRepository from '~/repositories/ArticlesRepository'
+import Modal from '~/components/Modal.vue'
+import {Post} from "~/types/Post"
+import {RouteParamValue} from "vue-router";
 
 const { fetchArticle, createArticle, updateArticle, deleteArticle } = ArticleRepository()
-import Modal from '~/components/Modal.vue'
 
-let props = defineProps({
-  id: {
-    type: [String, null],
-    default: null,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-})
+let props = defineProps<{
+  id?: string|RouteParamValue[],
+  title: string
+}>()
 
-let record = ref(null)
-const isLoading = ref(false)
-let showModal = ref(false)
+const record = ref<Post|null>(null)
+const isLoading = ref<boolean>(false)
+const showModal = ref<boolean>(false)
 
-const editing = computed(() => {
+const editing = computed<boolean>(() => {
   return !!props?.id
 })
 
 if (editing.value) {
   isLoading.value = true
-  await fetchArticle(props.id).then((json) => {
+  await fetchArticle(props.id as string).then((json) => {
     record.value = Object.keys(json).length !== 0 ? json : null
     isLoading.value = false
   })
 }
 
 import * as yup from 'yup';
-
 const { values, errors, defineInputBinds } = useForm({
     validationSchema: {
       articleTitle: yup.string().max(100).required(),
@@ -130,24 +125,24 @@ function onSubmit() {
   if (!editing.value) {
     createArticle({
       userId: 1,
-      title: values.title,
-      body: values.body,
-    }).finally(() => {
+      title: values.articleTitle,
+      body: values.articleBody,
+    } as Post).finally(() => {
       isLoading.value = false
     })
   } else {
     updateArticle({
       userId: 1,
       id: props.id,
-      title: values.title,
-      body: values.body,
-    }).finally(() => {
+      title: values.articleTitle,
+      body: values.articleBody,
+    } as Post).finally(() => {
       isLoading.value = false
     })
   }
 }
 
-function confirmDelete(id) {
+function confirmDelete(id:string) {
   deleteArticle(id).finally(() => {
     isLoading.value = false
   })

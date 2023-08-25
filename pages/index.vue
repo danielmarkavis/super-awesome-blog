@@ -1,9 +1,9 @@
-<template>
+><template>
   <HomeLayout title="Home" description="Homepage">
     <template #content>
       <h1 class="text-center p-5 text-accent">Welcome to super awesome blog.</h1>
 
-      <div v-if="records?.length > 0 && !loading">
+      <div v-if="records && records?.length > 0 && !loading">
         <div class="container mx-auto">
           <div class="grid md:grid-cols-2 gap-5">
             <NuxtLink :to="'/blog/'+ record.id" class="rounded overflow-hidden shadow-lg bg-level-1 hover:bg-level-2" v-for="(record, index) in records" :key="index">
@@ -21,17 +21,18 @@
   </HomeLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import HomeLayout from '~/layouts/HomeLayout.vue'
-import ArticleRepository from '~/components/repositories/ArticlesRepository'
+import ArticleRepository from '~/repositories/ArticlesRepository'
+import {Post} from "~/types/Post"
 
 const { fetchArticles } = ArticleRepository()
 
-let records = ref([])
-let loading = ref(false)
+let records = ref<Array<Post>|null>(null)
+let loading = ref<boolean>(false)
 
 loading.value = true
-fetchArticles().then((json) => {
+fetchArticles().then((json:Array<Post>) => {
   records.value = json
   loading.value = false
 })
